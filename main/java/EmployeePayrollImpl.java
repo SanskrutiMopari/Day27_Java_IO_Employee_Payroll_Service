@@ -2,16 +2,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class EmployeePayrollService {
-    private List<EmployeePayrollData> employeePayrollList;
+public class EmployeePayrollImpl {
+    public static enum IOService {
+        FILE_IO, CONSOLE_IO, DB_IO, REST_IO
+    }
 
-    public EmployeePayrollService() {
+    private List<EmployeePayrollData> employeePayrollList = new ArrayList<>();;
+
+    public EmployeePayrollImpl() {
         employeePayrollList = new ArrayList<>();
     }
 
-
     public static void main(String[] args) {
-        EmployeePayrollService employeePayrollService = new EmployeePayrollService();
+        EmployeePayrollImpl employeePayrollService = new EmployeePayrollImpl();
         Scanner consoleInputReader = new Scanner(System.in);
         employeePayrollService.readEmployeePayrollData(consoleInputReader);
         employeePayrollService.writeEmployeePayrollData();
@@ -28,7 +31,7 @@ public class EmployeePayrollService {
         employeePayrollList.add(new EmployeePayrollData(id, name, salary));
     }
 
-    void writeEmployeePayrollData() {
+    private void writeEmployeePayrollData() {
         System.out.println("\nWriting Employee Payroll to console\n" + employeePayrollList);
     }
 }
